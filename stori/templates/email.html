@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stori Take Home Demo</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif
+      }
+
+      h1,
+      h2 {
+        color: #006880;
+      }
+
+      .cta {
+        color: #000000;
+        background-color: #67d1c3;
+      }
+
+      .footer span {
+        font-size: 12px;
+        display: inline-block;
+        padding: 1rem 0;
+        width: 100%;
+        color: #b2bbc8;
+      }
+
+      .stat {
+        width: 44%;
+        display: inline-block;
+        padding: 20px 0;
+        border: 1px solid #efefef;
+        border-radius: 10px;
+        margin: 15px 10px;
+        box-shadow: 3px 2px 6px 1px #f5f5f5;
+      }
+
+      .stat span {
+        display: block;
+      }
+
+      .stat .value {
+        font-size: 3rem;
+        color: #868eff;
+      }
+
+      .stat .top_label {
+        color: #67d1c3;
+      }
+
+      .stat .bottom_label {
+        color: #db81bc;
+      }
+
+      .table td {
+        text-align: right;
+        margin: 0 5px;
+        padding: 10px;
+        border-radius: 3px;
+      }
+
+      td.table-column {
+        background: #006880;
+        color: white;
+      }
+
+      td.table-row {
+        color: #868eff;
+      }
+
+      td.table-value {
+        color: #353535;
+      }
+
+      .block-grid.tables,
+      .block-grid.images {
+        margin: 40px 0 0px;
+      }
+
+      .no-border {
+        border: none !important;
+      }
+
+      @media (max-width: 520px) {
+        .block-grid {
+          min-width: 320px !important;
+          max-width: 100% !important;
+          display: block !important;
+        }
+
+        .col {
+          min-width: 320px !important;
+          max-width: 100% !important;
+          display: block !important;
+        }
+
+        .block-grid {
+          width: 100% !important;
+        }
+
+        .col {
+          width: 100% !important;
+        }
+
+        .col_cont {
+          margin: 0 auto;
+        }
+
+        img.fullwidth {
+          width: 100% !important;
+        }
+
+        img.fullwidthOnMobile {
+          width: 100% !important;
+        }
+
+        .no-stack .col {
+          min-width: 0 !important;
+          display: table-cell !important;
+        }
+
+        .no-stack.two-up .col {
+          width: 50% !important;
+        }
+
+        .no-stack .col.num2 {
+          width: 16.6% !important;
+        }
+
+        .no-stack .col.num3 {
+          width: 25% !important;
+        }
+
+        .no-stack .col.num4 {
+          width: 33% !important;
+        }
+
+        .no-stack .col.num5 {
+          width: 41.6% !important;
+        }
+
+        .no-stack .col.num6 {
+          width: 50% !important;
+        }
+
+        .no-stack .col.num7 {
+          width: 58.3% !important;
+        }
+
+        .no-stack .col.num8 {
+          width: 66.6% !important;
+        }
+
+        .no-stack .col.num9 {
+          width: 75% !important;
+        }
+
+        .no-stack .col.num10 {
+          width: 83.3% !important;
+        }
+
+        .video-block {
+          max-width: none !important;
+        }
+
+        .mobile_hide {
+          min-height: 0px;
+          max-height: 0px;
+          max-width: 0px;
+          display: none;
+          overflow: hidden;
+          font-size: 0px;
+        }
+
+        .desktop_hide {
+          display: block !important;
+          max-height: none !important;
+        }
+
+        .img-container.big img {
+          width: auto !important;
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+      <tr>
+        <td align="center" valign="top">
+          <table border="0" cellpadding="20" cellspacing="0" width="600" id="emailContainer">
+            <tr>
+              <td align="center" valign="top">
+                <table border="0" cellpadding="20" cellspacing="0" width="100%" id="emailHeader">
+                  <tr>
+                    <td align="center" valign="top">
+                      <img
+                        src="https://braze-images.com/appboy/communication/assets/image_assets/images/62aaa6450a04950debb9a043/original.png?1655350853"
+                        alt="">
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" valign="top">
+                <table border="0" cellpadding="20" cellspacing="0" width="100%" id="emailBody">
+                  <tr>
+                    <td align="center" valign="top">
+                      <h1>{{name+'! ' | default('')}}Your 2022 in summary is here!</h1>
+                      <div class="block-grid">
+                        {% for item in body.cells -%}
+                        <div class="num4 stat">
+                          {% for key, value in item.items() -%}
+                          <span class={{key}}>{{ value }}</span>
+                          {% endfor %}
+                        </div>
+                        {% endfor %}
+                      </div>
+                      <div class="block-grid tables">
+                        {% for item in body.tables %}
+                        <h2>{{item.table_title}}</h2>
+                        <div class="col">
+                          <div class="num4 table">
+                            <table>
+                              <thead>
+                                <td class="no-border"></td>
+                                {% for col in item.columns %}
+                                <td class="table-column">{{col|e}}</td>
+                                {% endfor %}
+                              </thead>
+                              <tbody>
+                                {% for row_name in item.rows %}
+                                <tr>
+                                  <td class="table-row">{{row_name|e}}</td>
+                                  {% for value in item.cells[loop.index0] %}
+                                  <td class="table-value">{{value|thousand_separator}}</td>
+                                  {% endfor %}
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        {% endfor %}
+                      </div>
+                      <div class="block-grid images">
+                        {% for image in body.images %}
+                        <div>
+                          <h2>{{ image.title }}</h2>
+                          {{ image.svg | safe}}
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" valign="top">
+                <table border="0" cellpadding="20" cellspacing="0" width="100%" id="emailFooter">
+                  <tr>
+                    <td align="center" valign="top">
+                      <div class="footer">
+                        <span>Consulta términos y condiciones</span>
+                        <span>Aviso de privacidad</span>
+                        <span>Producto ofrecido por Mi Stori S.A. de C.V. SOFOM E.N.R., que, para su constitución y
+                          operación con tal carácter, no requiere de autorización de la Secretaría de Hacienda y Crédito
+                          Público, sujeta a la supervisión de la Comisión Nacional Bancaria y de Valores, únicamente
+                          para efectos de lo dispuesto por el artículo 56 de la Ley General de Organizaciones y
+                          Actividades Auxiliares del Crédito.</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+
+</html>

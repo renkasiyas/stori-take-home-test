@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "stori-take-home"
+version = "0.1.0"
+description = ""
+authors = ["Ren Kasiyas <okasiyas@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.4.3"
+numpy = "^1.23.0"
+magnum = "^14.0.0"
+fastapi = "^0.78.0"
+python-dotenv = "^0.20.0"
+plotly = "^5.9.0"
+SQLAlchemy = "^1.4.38"
+python-dateutil = "^2.8.2"
+requests = "^2.28.0"
+Jinja2 = "^3.1.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
