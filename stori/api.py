@@ -36,7 +36,7 @@ async def create_user_endpoint(request: Request):
         return {"result": "Failed", "message": f"User {email.id} already created"}
 
 
-@app.get("/user/{user_id}")
+@app.get("/user/{user_id}/")
 async def get_user_endpoint(user_id: int):
     """Get user information by id"""
     if user_exist(user_id):
@@ -48,7 +48,7 @@ async def get_user_endpoint(user_id: int):
         return {"result": "Failed"}
 
 
-@app.delete("/user/{user_id}")
+@app.delete("/user/{user_id}/")
 async def delete_user_endpoint(user_id: int):
     """Delete user"""
     if user_exist(user_id):
@@ -59,7 +59,7 @@ async def delete_user_endpoint(user_id: int):
         return {"result": "Failed"}
 
 
-@app.get("/txs/{user_id}/{format}")
+@app.get("/txs/{user_id}/{format}/")
 async def txs_user_csv_endpoint(user_id: int, format: str):
     """Get user transactions"""
     if user_exist(user_id):
@@ -75,7 +75,7 @@ async def txs_user_csv_endpoint(user_id: int, format: str):
         return {"result": "Failed"}
 
 
-@app.post("/send-email/{user_id}")
+@app.post("/send-email/{user_id}/")
 async def get_user_endpoint(user_id: int):
     """Send email"""
     if user_exist(user_id):

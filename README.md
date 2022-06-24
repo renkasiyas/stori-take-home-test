@@ -16,14 +16,14 @@
 Note:
 
 - All calls should be made to this base url: `https://rqva7y6toj.execute-api.us-east-1.amazonaws.com/stori-take-home-test`
-- Beware that all endpoint urls are without ending trailing slash.
+- Beware that all endpoint urls have ending trailing slash.
 
 
 ### Create an user
 
 Method: Endpoint
 ``` bash
-POST: /user
+POST: /user/
 ```
 
 Payload (JSON)
@@ -50,7 +50,7 @@ Returns
 ### Get an email with user's summary
 Method: Endpoint
 ```bash
-POST: /send-email/{user_id}
+POST: /send-email/{user_id}/
 ```
 
 Payload
@@ -69,7 +69,7 @@ Response
 ### Download transactions' CSV file or JSON response
 Method: Endpoint
 ```bash
-POST: /txs/{user_id}/{format<json|csv>}
+POST: /txs/{user_id}/{format<json|csv>}/
 ```
 Payload
 ```
@@ -111,8 +111,8 @@ If format is JSON, this is the response:
 
 ## Other endpoints
 
-- `GET: /user/{user_id}`
-- `DELETE: /user/{user_id}`
+- `GET: /user/{user_id}/`
+- `DELETE: /user/{user_id}/`
 
 
 
