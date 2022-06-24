@@ -4,24 +4,26 @@
 
 - Use of a HTTP request library (`Python` `Requests`, `CURL`, etc) or a GUI API testing tool (`Postman`, `Insomnia`, etc).
 - Active Internet connection.
-- *Real email address* account able to receive messages.
+- *Real email address account* able to receive messages.
 
 ## Steps
 
 1. Create an user.
 2. Get an email with user's summary.
-3. Download transactions' CSV or JSON.
+3. Call for transaction's JSON or download CSV file.
+4. Repeat with a new user.
 
 Note:
 
-All calls should be made to this base url: `https://rqva7y6toj.execute-api.us-east-1.amazonaws.com/stori-take-home-test/`
+- All calls should be made to this base url: `https://rqva7y6toj.execute-api.us-east-1.amazonaws.com/stori-take-home-test`
+- Beware that all endpoint urls are without ending trailing slash.
 
 
 ### Create an user
 
 Method: Endpoint
 ``` bash
-POST: user/
+POST: /user
 ```
 
 Payload (JSON)
@@ -40,7 +42,7 @@ Returns
     "id": 1,
     "email": "valid@address.com",
     "name": "Your name"
-  }
+  },
   "txs": 473
 }
 ```
@@ -48,7 +50,7 @@ Returns
 ### Get an email with user's summary
 Method: Endpoint
 ```bash
-POST: send-email/{user_id}
+POST: /send-email/{user_id}
 ```
 
 Payload
@@ -67,7 +69,7 @@ Response
 ### Download transactions' CSV file or JSON response
 Method: Endpoint
 ```bash
-POST: txs/{user_id}/{format<json|csv>}
+POST: /txs/{user_id}/{format<json|csv>}
 ```
 Payload
 ```
@@ -76,7 +78,7 @@ N/A
 
 Returns
 
-If format is CSV, returns a binary file to download.
+If format is CSV, returns a binary file to download.*
 
 If format is JSON, this is the response:
 
@@ -107,11 +109,16 @@ If format is JSON, this is the response:
 }
 ```
 
-## Caveats
-- Database is non-persistent, so any user/transactions created will be deleted after some time. If you want to try again, please start over.
-- Email is sent through sender address `no-reply@wem.mx`. Please look into Junk/spam folder if mail is not into inbox.
-
 ## Other endpoints
 
-- `GET: user/{user_id}`
-- `DELETE: user/{user_id}`
+- `GET: /user/{user_id}`
+- `DELETE: /user/{user_id}`
+
+
+
+## Caveats & Known issues
+- Database is non-persistent, so any user/transactions created will be deleted after a short time window. If you want to try again, please start over.
+- Email is sent through sender address `no-reply@wem.mx`. Please look into Junk/spam folder if mail is not into inbox.
+- `send-email` endpoint is the 'slowest'. I made another project on the fly to process and generate the chart located at the bottom of the email message. This connection is a VPS outside AWS ecosystem.
+- *CSV file is downloading wrongly enconded in base64 —you could decode it to confirm. Didn't got time to debbug this properly.
+
