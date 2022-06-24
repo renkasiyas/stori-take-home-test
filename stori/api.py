@@ -68,7 +68,7 @@ async def txs_user_csv_endpoint(user_id: int, format: str):
         if format == "csv":
             df = from_db_to_df(txs)
             df.to_csv(csv_filepath, mode="w", index=False)
-            return FileResponse(csv_filepath, media_type="application/octet-stream", filename=csv_filepath)
+            return FileResponse(csv_filepath, media_type="application/octet-stream", filename="txs.csv")
         else:
             return {"result": "Success", "data": txs}
     else:
