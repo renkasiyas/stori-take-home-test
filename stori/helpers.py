@@ -14,9 +14,11 @@ def get_static_from_kaleido_server(fig, format)-> str:
     payload = {
         "fig": b64fig.decode('utf-8')
     }
-    r = requests.post(f"http://{secrets['DIXIT_IP']}:8030/{format}/600/350", json=payload)
+    r = requests.post(f"https://{secrets['DIXIT_IP']}/{format}/600/450", json=payload)
     if r.json():
-        return r.json()[format]
+        url = r.json()["url"]
+        img_el = f"""<img src="{url}" />"""
+        return img_el
     else:
         return ""
 

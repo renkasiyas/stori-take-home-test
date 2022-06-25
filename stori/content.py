@@ -62,8 +62,8 @@ def plot(df: pd.DataFrame):
         text="Your 2022 High",
         opacity=0.7,
     )
-    svg = get_static_from_kaleido_server(fig, "svg")
-    return svg
+    image = get_static_from_kaleido_server(fig, "jpg")
+    return image
 
 
 def calculate_stats(df: pd.DataFrame) -> dict:
@@ -153,5 +153,5 @@ def make_content(stats: dict) -> dict:
                 }
             )
         elif key == "daily_balance":
-            content["images"] = [{"title": email_images_title, "svg": plot(stats["daily_balance"])}]
+            content["images"] = [{"title": email_images_title, "source": plot(stats["daily_balance"])}]
     return content

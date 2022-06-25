@@ -201,9 +201,7 @@
                 <table border="0" cellpadding="20" cellspacing="0" width="100%" id="emailHeader">
                   <tr>
                     <td align="center" valign="top">
-                      <img
-                        src="https://braze-images.com/appboy/communication/assets/image_assets/images/62aaa6450a04950debb9a043/original.png?1655350853"
-                        alt="">
+                      <img src="https://kaleido.kasiyas.me/static/stori-logo.png" alt="">
                     </td>
                   </tr>
                 </table>
@@ -255,7 +253,7 @@
                         {% for image in body.images %}
                         <div>
                           <h2>{{ image.title }}</h2>
-                          {{ image.svg | safe}}
+                          {{ image.source | safe}}
                         </div>
                         {% endfor %}
                       </div>
