@@ -117,7 +117,7 @@ If format is JSON, this is the response:
 
 ## Ecosystem
 
-- AWS Lambda Function with two additional layers (fon numpy and pandas).
+- AWS Lambda Function with two additional layers (for numpy and pandas).
 - Kaleido's image processing server with REST API outside AWS. Made specific to:
     1. Receive base64'd Plotly JSON object.
     2. Write image in file system.
