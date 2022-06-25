@@ -115,10 +115,21 @@ If format is JSON, this is the response:
 - `DELETE: /user/{user_id}/`
 
 
+## Ecosystem
+
+- AWS Lambda function with two additional layers (fon numpy and pandas).
+- Kaleido's image processing server with REST API outside AWS. Made specific to:
+    1. Receive base64'd Plotly JSON object.
+    2. Write image in file system.
+    3. Expose image as static file.
+    4. Returns public HTTPS URL to access the file from outside.
+- Nginx Proxy Server for static files (Stori's logo and individuals 2022-Summary chart as PNGs).
+
 
 ## Caveats & Known issues
 - Database is non-persistent, so any user/transactions created will be deleted after a short time window. If you want to try again, please start over.
 - Email is sent through sender address `no-reply@wem.mx`. Please look into Junk/spam folder if mail is not into inbox.
 - `send-email` endpoint is the 'slowest'. I made another project on the fly to process and generate the chart located at the bottom of the email message. This connection is a VPS outside AWS ecosystem.
-- *CSV file is downloading wrongly enconded in base64 —you could decode it to confirm. Didn't got time to debbug this properly.
+- *CSV file is downloading wrongly enconded in base64 —you could decode it to confirm. Didn't got time to debug this properly.
+- Latest version now supports PNG as email media instead of SVG. That provides full support to Gmail clients.
 
